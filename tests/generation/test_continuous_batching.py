@@ -1841,7 +1841,7 @@ class ContinuousBatchingWithAcceleratorTest(unittest.TestCase):
 
     def _started_manager_with_requests(self, max_new_tokens: int = 200):
         """Returns a started manager with a few requests in flight, along with the model and the number of requests."""
-        tokenizer, model = get_tokenizer_and_model("TinyLlama/TinyLlama-1.1B-Chat-v1.0", "|sdpa", torch_device)
+        tokenizer, model = get_tokenizer_and_model("TinyLlama/TinyLlama-1.1B-Chat-v1.0", "sdpa", torch_device)
         input_ids = get_generation_inputs(_DEFAULT_USER_MESSAGES, tokenizer, for_continuous_batching=True)
         cb_config = ContinuousBatchingConfig(use_cuda_graph=False, use_async_batching=False)
         manager = model.init_continuous_batching(continuous_batching_config=cb_config)

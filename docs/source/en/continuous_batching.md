@@ -401,8 +401,8 @@ Continuous batching requires a paged-compatible attention backend: we support an
 
 | Backend | `attn_implementation` | Requirements |
 |---|---|---|
-| FlashAttention | <code>"paged&#124;flash_attention_2"</code> | `flash-attn` package |
-| SDPA (PyTorch native) | <code>"paged&#124;sdpa"</code> | None |
+| FlashAttention | <code>"flash_attention_2"</code> | `flash-attn` package |
+| SDPA (PyTorch native) | <code>"sdpa"</code> | None |
 | Eager | <code>"paged&#124;eager"</code> | None |
 
 ```py

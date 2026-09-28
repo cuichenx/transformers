@@ -768,6 +768,14 @@ class ContinuousBatchingManager:
         if target_implem == "eager":
             target_implem = "paged|eager"
 
+        # Check the implementation is vaid for CB
+        is_flash = is_flash_attention_requested(requested_attention_implementation=target_implem)
+        if not (target_implem in ["paged|eager", "sdpa"] or is_flash):
+            raise ValueError(
+                f"Implementation {target_implem} is not supported for continuous batching. Use 'paged|eager', 'sdpa' "
+                "or a flash implementation instead."
+            )
+
         # Switch to a paged implementation (always entered if conversion to flash happened)
         if target_implem != original_attn_impl:
             model.set_attn_implementation(target_implem)
